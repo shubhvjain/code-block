@@ -4,20 +4,21 @@ const port = 3002
 const ser = require("./service")
 
 
-const { exec } = require("child_process");
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 app.get('/', async (req, res) => {
-    exec("ls", (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            res.send(stderr)
-        }
+    const { stdout, stderr } = await exec('python code/sample.py');
+    if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        res.send(stderr)
+
+    }else{
         console.log(`stdout: ${stdout}`);
-    });
+    res.send(stdout.toString().split('\n'))
+    }
+    
+    
 })
 
 app.post('/', async (req, res) => {
