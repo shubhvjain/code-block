@@ -1,0 +1,22 @@
+{
+  "name": "code-block",
+  "version": "1.0.0",
+  "description": "API to run code in multiple languages",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubhvjain/code-block.git"
+  },
+  "author": "shubhvjain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shubhvjain/code-block/issues"
+  },
+  "homepage": "https://github.com/shubhvjain/code-block#readme",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}
