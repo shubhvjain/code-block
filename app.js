@@ -8,14 +8,18 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 app.get('/', async (req, res) => {
-    const { stdout, stderr } = await exec('python code/sample.py');
+    const { stdout, stderr } = await exec('python code/sample.py',{encoding:"buffer"});
+    console.log(typeof stdout)
+
     if (stderr) {
         console.log(`stderr: ${stderr}`);
         res.send(stderr)
-
     }else{
-        console.log(`stdout: ${stdout}`);
-    res.send(stdout.toString().split('\n'))
+       //  console.log(`stdout: ${stdout}`);
+       console.log(typeof stdout)
+        res.send(stdout)
+ 
+//    res.send(stdout.toString().split('\n'))
     }
     
     
