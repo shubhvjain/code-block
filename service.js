@@ -26,7 +26,8 @@ var lang = {
         "avail": true,
         "run": async (code) => {
             await writeToFile("code.c",code)
-            const { stdout, stderr } = await exec('gcc -o ccode1 code.c & ./ccode1 ', {cwd:"code", encoding: "buffer" });
+            const { stdout1, stderr1 } = await exec('rm ccode1 & gcc -o ccode1 code.c', {cwd:"code", encoding: "buffer" });
+            const { stdout, stderr } = await exec('./ccode1 ', {cwd:"code", encoding: "buffer" });
             let out = stdout.toString().split("\n")
             return { stdout: stdout.toString('base64'), stderr: stderr.toString('base64'), output: out }
         }
