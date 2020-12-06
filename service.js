@@ -12,6 +12,16 @@ var lang = {
             let out = stdout.toString().split("\n")
             return { stdout: stdout.toString('base64'), stderr: stderr.toString('base64'), output: out }
         }
+    },
+    "r": {
+        "avail": true,
+        "run": async (code) => {
+            await writeToFile("code.R", code)
+            const { stdout, stderr } = await exec('Rscript code/code.R', { encoding: "buffer" });
+            let out = stdout.toString().split("\n")
+            // console.log(out)
+            return { stdout: stdout.toString('base64'), stderr: stderr.toString('base64'), output: out }
+        }
     }
 }
 
